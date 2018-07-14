@@ -5,9 +5,10 @@ var session = require('express-session');
 var connection = require('./config');
 var app = express();
 app.use(session({
-secret: 'ssshhhhh',
+  secret: 'random_string_goes_here',
+  duration: 30 * 60 * 1000,
+  activeDuration: 5 * 60 * 1000,
 }));
- 
 var authenticateController=require('./authenticate-controller');
 var registerController=require('./register-controller');
 var enterController=require('./enterdate');
@@ -24,7 +25,7 @@ app.get('/login.html', function (req, res) {
    res.sendFile( __dirname + "/" + "login.html" );  
 });  
 
-app.post('/login.html',function(req,res){
+app.post('/authenticate-controller',function(req,res){
   sess = req.session;
 //In this we are assigning email to sess.email variable.
 //email comes from HTML page.

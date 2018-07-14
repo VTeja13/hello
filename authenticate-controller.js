@@ -21,7 +21,7 @@ module.exports.authenticate=function(req,res){
   decryptedString = cryptr.decrypt(results[0].password);
             if(password==decryptedString)
             {
-                res.redirect('/calendarform.html');
+                  res.sendFile( __dirname + "/" + "calendarform.html" );
                 
             }
             else{
